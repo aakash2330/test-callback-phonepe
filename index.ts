@@ -16,9 +16,19 @@ type responseType = {
 let responseArr:responseType[]=[];
 
 app.post("/api/callback-url",(req,res)=>{
-    console.log(req.body)
-    responseArr.push(req.body)
-    res.json({response:req.body})
+
+         /*
+{ BODY --=>
+
+  response: 'eyJzdWNjZXNzIjp0cnVlLCJjb2RlIjoiUEFZTUVOVF9TVUNDRVNTIiwibWVzc2FnZSI6IllvdXIgcGF5bWVudCBpcyBzdWNjZXNzZnVsLiIsImRhdGEiOnsibWVyY2hhbnRJZCI6Ik1FUkNIQU5UVUFUIiwibWVyY2hhbnRUcmFuc2FjdGlvbklkIjoiTVQ3ODUwNTkwMDY4MTg4MTA0IiwidHJhbnNhY3Rpb25JZCI6IlQyMzA5MjkyMzEyNDI5NjY4NDI5MjUwIiwiYW1vdW50IjoxMDAwMCwic3RhdGUiOiJDT01QTEVURUQiLCJyZXNwb25zZUNvZGUiOiJTVUNDRVNTIiwicGF5bWVudEluc3RydW1lbnQiOnsidHlwZSI6Ik5FVEJBTktJTkciLCJwZ1RyYW5zYWN0aW9uSWQiOiIxOTk1NDY0NzczIiwicGdTZXJ2aWNlVHJhbnNhY3Rpb25JZCI6IlBHMjIxMjI5MTYwNzA4MzM0NDkzNDMwMCIsImJhbmtUcmFuc2FjdGlvbklkIjpudWxsLCJiYW5rSWQiOiIifX19'
+}
+
+     */
+
+    const data = atob(req.body.response) 
+    const dataObj = JSON.parse(data)
+    responseArr.push(dataObj)
+    res.json({response:dataObj})
 })
 
 app.get("/",(req,res)=>{
