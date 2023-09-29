@@ -9,9 +9,20 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
+type responseType = {
+    response:string
+}
+
+let responseArr:responseType[]=[];
+
 app.post("/api/callback-url",(req,res)=>{
     console.log(req.body)
-    res.json({request:req.body})
+    responseArr.push(req.body)
+    res.json({response:req.body})
+})
+
+app.get("/",(req,res)=>{
+    res.json({response:responseArr})
 })
 
 const port = 3001;
