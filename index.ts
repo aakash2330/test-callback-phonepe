@@ -11,7 +11,7 @@ app.use(cors());
 
 app.post("/api/callback-url",(req,res)=>{
     console.log(req.body)
-    res.send("done")
+    res.json({request:req.body})
 })
 
 const port = 3001;

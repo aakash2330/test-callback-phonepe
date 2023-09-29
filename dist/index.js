@@ -12,7 +12,7 @@ app.use(body_parser_1.default.json());
 app.use((0, cors_1.default)());
 app.post("/api/callback-url", (req, res) => {
     console.log(req.body);
-    res.send("done");
+    res.json({ request: req.body });
 });
 const port = 3001;
 app.listen(port, () => {
